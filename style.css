@@ -1,0 +1,725 @@
+:root {
+    --bg-dark: #f0f2f5;
+    --bg-light: #ffffff;
+    --bg-gradient-start: #eaeaea;
+    --bg-gradient-end: #d5d5d5;
+    --primary: #e6554d;
+    --primary-hover: #d24238;
+    --text-main: #1c1d24;
+    --text-muted: #5a5c66;
+    --glass-bg: rgba(255, 255, 255, 0.6);
+    --glass-border: rgba(0, 0, 0, 0.1);
+    --paw-color: rgba(0, 0, 0, 0.04);
+    --iban-bg: rgba(255, 255, 255, 0.5);
+    --iban-box-bg: #e4e6eb;
+    --icon-wrapper-bg: #e4e6eb;
+    --btn-text: #ffffff;
+}
+
+[data-theme="dark"] {
+    --bg-dark: #0f1015;
+    --bg-light: #1c1d24;
+    --bg-gradient-start: #1c1d24;
+    --bg-gradient-end: #0f1015;
+    --primary: #f28b82;
+    --primary-hover: #ff9e96;
+    --text-main: #f0f0f0;
+    --text-muted: #a0a0a0;
+    --glass-bg: rgba(30, 31, 38, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --paw-color: rgba(255, 255, 255, 0.02);
+    --iban-bg: rgba(0, 0, 0, 0.3);
+    --iban-box-bg: #121212;
+    --icon-wrapper-bg: #2a2c35;
+    --btn-text: #121212;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    line-height: 1.6;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Background Paw Animation */
+.background-animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+    background: radial-gradient(circle at top, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
+    transition: background 0.4s ease;
+}
+
+.paw-icon {
+    position: absolute;
+    color: var(--paw-color);
+    font-size: 2rem;
+    animation: drift linear infinite;
+    transition: color 0.4s ease;
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    color: var(--text-main);
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.theme-toggle:hover {
+    transform: scale(1.1);
+    color: var(--primary);
+}
+
+@keyframes drift {
+    0% {
+        transform: translateY(110vh) scale(0.5) rotate(0deg);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    90% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-10vh) scale(1.5) rotate(45deg);
+        opacity: 0;
+    }
+}
+
+.container {
+    max-width: 1100px;
+    /* Daha geniş alan */
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Header / Hero */
+.hero {
+    text-align: center;
+    padding: 10vh 0 10vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-placeholder {
+    font-size: 3.5rem;
+    color: var(--primary);
+    margin-bottom: 1rem;
+    animation: pulse 2s infinite ease-in-out;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+h1 {
+    font-weight: 800;
+    font-size: 2.0rem;
+    /* Orta derece - medium size */
+    line-height: 1.3;
+    letter-spacing: 2px;
+    margin-bottom: 0.5rem;
+    text-align: center;
+    background: linear-gradient(90deg, var(--text-main), var(--text-muted));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.scroll-indicator {
+    margin-top: 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    animation: bounce 2s infinite;
+}
+
+.scroll-indicator i {
+    margin-top: 0.5rem;
+}
+
+@keyframes bounce {
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+        transform: translateY(0);
+    }
+
+    40% {
+        transform: translateY(-10px);
+    }
+
+    60% {
+        transform: translateY(-5px);
+    }
+}
+
+/* Main Content */
+main {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.glass-panel {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 2.5rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glass-panel:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+}
+
+.glass-panel h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--text-main);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.glass-panel h2 i {
+    color: var(--primary);
+}
+
+/* Glass Panel Content */
+.glass-panel p {
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+}
+
+/* Gallery / Modern 3-Image Carousel Section */
+.carousel-container {
+    position: relative;
+    width: 100%;
+    height: 430px;
+    margin-top: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 40px;
+}
+
+.carousel-slides {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    perspective: 1000px;
+}
+
+.slide {
+    position: absolute;
+    width: 320px;
+    height: 220px;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    z-index: 1;
+    pointer-events: none;
+    border: 3px solid transparent;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Position mapping for the 3 active visible slides */
+.slide.active-left {
+    transform: translateX(-110%) scale(0.8);
+    opacity: 0.7;
+    z-index: 2;
+    pointer-events: auto;
+    filter: brightness(60%);
+}
+
+.slide.active-center {
+    transform: translateX(0) scale(1.3);
+    opacity: 1;
+    z-index: 5;
+    pointer-events: auto;
+    border-color: var(--primary);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+    filter: brightness(100%);
+    cursor: pointer;
+    /* Tıklanabilir olduğunu belli etmek için */
+}
+
+.slide.active-right {
+    transform: translateX(110%) scale(0.8);
+    opacity: 0.7;
+    z-index: 2;
+    pointer-events: auto;
+    filter: brightness(60%);
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    color: var(--text-main);
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(12px);
+    transition: all 0.3s;
+}
+
+.carousel-btn:hover {
+    background: var(--primary);
+    color: #fff;
+    transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-btn.prev {
+    left: 0;
+}
+
+.carousel-btn.next {
+    right: 0;
+}
+
+.iban-container {
+    background: var(--iban-bg);
+    border-radius: 12px;
+    padding: 1.5rem;
+    border: 1px solid var(--glass-border);
+}
+
+.bank-title {
+    color: var(--primary);
+    text-align: center;
+    margin-bottom: 0.8rem;
+    font-size: 1.15rem;
+}
+
+.iban-details {
+    margin-bottom: 0.8rem;
+}
+
+.iban-details p {
+    color: var(--text-main);
+    text-align: center;
+    font-size: 0.95rem;
+    margin-bottom: 0.3rem;
+}
+
+.iban-details strong {
+    color: var(--text-muted);
+}
+
+.iban-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--iban-box-bg);
+    padding: 1.2rem;
+    border-radius: 8px;
+    gap: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    user-select: none;
+}
+
+.iban-box:hover {
+    transform: scale(1.02);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+#iban-number {
+    font-family: monospace;
+    font-size: 1.3rem;
+    letter-spacing: 1.5px;
+    word-break: normal;
+    color: var(--text-main);
+    font-weight: 600;
+}
+
+/* Her yerde gözükecek kopyalama butonu */
+.global-copy-btn {
+    display: flex;
+    appearance: none;
+    -webkit-appearance: none;
+    background: var(--primary);
+    color: var(--btn-text);
+    border: none;
+    padding: 0.8rem 1.2rem;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    transition: all 0.2s;
+    font-family: inherit;
+    flex-shrink: 0;
+}
+
+.global-copy-btn:hover {
+    background: var(--primary-hover);
+    transform: scale(1.02);
+}
+
+.iban-note {
+    font-size: 0.95rem;
+    color: var(--text-main);
+    margin-top: 1.5rem;
+    text-align: center;
+    margin-bottom: 0 !important;
+}
+
+.bagis-vurgu {
+    font-size: 1.4rem;
+    font-weight: 900;
+    color: var(--primary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background: rgba(230, 85, 77, 0.1);
+    /* Hafif turuncu/kırmızı vurgu fonu */
+    padding: 0.1rem 0.6rem;
+    border-radius: 4px;
+    margin-left: 0.3rem;
+}
+
+/* Toast Bildirimi */
+.toast {
+    position: fixed;
+    bottom: -80px;
+    right: 20px;
+    background: #4caf50;
+    color: #fff;
+    padding: 14px 24px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    font-weight: 600;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: bottom 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    z-index: 10000;
+}
+
+.toast.show {
+    bottom: 30px;
+}
+
+/* Contact Section */
+.contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.contact-card {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--text-main);
+    background: rgba(0, 0, 0, 0.2);
+    padding: 1rem;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.contact-card:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--glass-border);
+}
+
+.icon-wrapper {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: var(--icon-wrapper-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    margin-right: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.contact-card:hover .icon-wrapper {
+    background: var(--primary);
+    color: var(--btn-text);
+}
+
+.contact-card:hover .icon-wrapper.instagram {
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    color: white;
+}
+
+.contact-card:hover .icon-wrapper.whatsapp {
+    background: #25D366;
+    color: white;
+}
+
+.contact-detail {
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-detail .label {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.contact-detail .value {
+    font-weight: 600;
+    font-size: 1.05rem;
+}
+
+/* Lightbox (Resme Tıklayınca Büyütme) */
+.lightbox {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    padding-top: 60px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.lightbox-content {
+    margin: auto;
+    display: block;
+    max-width: 90%;
+    max-height: 85vh;
+    border-radius: 8px;
+    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.5);
+    object-fit: contain;
+    animation: zoomIn 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: #fff;
+    font-size: 45px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+    z-index: 10000;
+}
+
+.lightbox-close:hover,
+.lightbox-close:focus {
+    color: var(--primary);
+    text-decoration: none;
+}
+
+@keyframes zoomIn {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 2rem 0;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-top: 2rem;
+}
+
+/* Responsive - Mobil Cihazlar için */
+@media (max-width: 768px) {
+    .container {
+        padding: 1.5rem 1rem;
+    }
+
+    .hero {
+        padding: 5vh 0;
+    }
+
+    .logo-placeholder {
+        font-size: 3rem;
+    }
+
+    h1 {
+        font-size: 1.6rem;
+        line-height: 1.3;
+    }
+
+    .glass-panel {
+        padding: 1.5rem 1rem;
+    }
+
+    .glass-panel h2 {
+        font-size: 1.3rem;
+    }
+
+    .iban-box {
+        flex-direction: column;
+        align-items: stretch;
+        cursor: default;
+        /* Telefonda kutuya değil butona basılsın hissi için */
+    }
+
+    .global-copy-btn {
+        width: 100%;
+        margin-top: 0.5rem;
+    }
+
+    .iban-details p {
+        font-size: 0.85rem;
+    }
+
+    #iban-number {
+        font-size: 1rem;
+        letter-spacing: 1px;
+        word-break: break-word;
+        /* Telefonda sığmazsa taşmasını önle */
+        text-align: center;
+    }
+
+    .copy-btn {
+        justify-content: center;
+        padding: 0.8rem;
+    }
+
+    .contact-card {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.5rem;
+        padding: 1.2rem;
+    }
+
+    .icon-wrapper {
+        margin-right: 0;
+        margin-bottom: 0.5rem;
+    }
+
+    .carousel-container {
+        height: 310px;
+        padding: 0;
+        margin-top: 1rem;
+    }
+
+    /* Telefondaki slide alanını resimler biraz daha büyük görünecek şekilde güncelledim */
+    .slide {
+        width: 200px;
+        height: 145px;
+    }
+
+    .slide.active-left {
+        transform: translateX(-40%) scale(0.75);
+    }
+
+    .slide.active-center {
+        transform: translateX(0) scale(1.15);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    .slide.active-right {
+        transform: translateX(40%) scale(0.75);
+    }
+
+    .carousel-btn {
+        width: 36px;
+        height: 36px;
+        font-size: 1rem;
+    }
+
+    .carousel-btn.prev {
+        left: 5px;
+    }
+
+    .carousel-btn.next {
+        right: 5px;
+    }
+}

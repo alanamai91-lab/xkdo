@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <title>Akşehir Doğayı ve Hayvanları Koruma Derneği</title>
+    <link rel="stylesheet" href="style.css?v=3">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <button id="theme-toggle" class="theme-toggle" title="Karanlık/Aydınlık Tema Değiştir">
+        <i class="fa-solid fa-moon"></i>
+    </button>
+    <div class="background-animation" id="bg-animation"></div>
+
+    <div class="container">
+        <header class="hero">
+            <div class="logo-placeholder">
+                <i class="fa-solid fa-paw"></i>
+            </div>
+            <h1>Akşehir Doğayı ve<br>Hayvanları Koruma Derneği</h1>
+            <div class="scroll-indicator">
+                <span>Bağış, Yaşam Alanımız ve İletişim</span>
+                <i class="fa-solid fa-chevron-down"></i>
+            </div>
+        </header>
+
+        <main>
+
+            <section class="donation-section glass-panel">
+
+                <div class="iban-container">
+                    <h3 class="bank-title">Ziraat Bankası Yasal Dernek Bağış IBAN'ımız</h3>
+
+                    <div class="iban-details">
+                        <p><strong>Hesap Adı:</strong> Akşehir Doğayı ve Hayvanları Koruma Derneği</p>
+                        <p><strong>Resmi IBAN:</strong></p>
+                    </div>
+
+                    <div class="iban-box" id="iban-box" title="Kopyalamak için tıklayın">
+                        <span id="iban-number">TR13 0001 0024 7297 8107 1150 01</span>
+                        <button id="global-copy-btn" class="global-copy-btn" title="IBAN Kopyala">
+                            İban Kopyala
+                        </button>
+                    </div>
+                    <p class="iban-note"><strong>Açıklama:</strong> <strong class="bagis-vurgu">BAĞIŞ</strong></p>
+                </div>
+            </section>
+
+            <section class="gallery-section glass-panel">
+                <h2><i class="fa-solid fa-images"></i> Yaşam Alanımız</h2>
+                <div class="carousel-container">
+                    <div class="carousel-slides">
+                        <div class="slide active"><img src="foto1.jpg" alt="Yaşam Alanı 1"></div>
+                        <div class="slide"><img src="foto2.jpg" alt="Yaşam Alanı 2"></div>
+                        <div class="slide"><img src="foto3.jpg" alt="Yaşam Alanı 3"></div>
+                        <div class="slide"><img src="foto4.jpg" alt="Yaşam Alanı 4"></div>
+                    </div>
+                    <button class="carousel-btn prev" title="Önceki"><i class="fa-solid fa-chevron-left"></i></button>
+                    <button class="carousel-btn next" title="Sonraki"><i class="fa-solid fa-chevron-right"></i></button>
+                </div>
+            </section>
+
+            <section class="contact-section glass-panel">
+                <h2>İletişim</h2>
+                <div class="contact-links">
+                    <a href="mailto:akdohay@hotmail.com" class="contact-card">
+                        <div class="icon-wrapper"><i class="fa-solid fa-envelope"></i></div>
+                        <div class="contact-detail">
+                            <span class="label">E-Posta</span>
+                            <span class="value">akdohay@hotmail.com</span>
+                        </div>
+                    </a>
+                    <a href="https://instagram.com/akdohay" target="_blank" class="contact-card">
+                        <div class="icon-wrapper instagram"><i class="fa-brands fa-instagram"></i></div>
+                        <div class="contact-detail">
+                            <span class="label">Instagram</span>
+                            <span class="value">@akdohay</span>
+                        </div>
+                    </a>
+                    <a href="tel:+905520203854" class="contact-card">
+                        <div class="icon-wrapper whatsapp"><i class="fa-solid fa-phone"></i></div>
+                        <div class="contact-detail">
+                            <span class="label">Telefon</span>
+                            <span class="value">+90 552 020 38 54</span>
+                        </div>
+                    </a>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2026 Akşehir Doğayı ve Hayvanları Koruma Derneği</p>
+        </footer>
+    </div>
+
+    <!-- Lightbox (Büyük Resim) -->
+    <div id="lightbox" class="lightbox">
+        <span class="lightbox-close" title="Kapat">&times;</span>
+        <img class="lightbox-content" id="lightbox-img">
+    </div>
+
+    <!-- Toast Notification (Sağ Alt Bildirim) -->
+    <div id="toast" class="toast">
+        <i class="fa-solid fa-circle-check"></i> IBAN kopyalandı
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
